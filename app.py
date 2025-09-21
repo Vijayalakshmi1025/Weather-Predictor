@@ -135,7 +135,7 @@ def build_features_from_slot(slot):
 # ----------------------
 # Streamlit UI
 # ----------------------
-st.title("🌤 Weather Prediction App")
+st.title("🌤 Weather Predictor")
 st.write("Three modes: dataset samples, manual input, live API forecast.")
 
 mode = st.radio("Select mode:", ["Mode 1: Dataset", "Mode 2: Manual", "Mode 3: Live API"])
