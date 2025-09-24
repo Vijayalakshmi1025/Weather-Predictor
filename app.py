@@ -136,13 +136,13 @@ def build_features_from_slot(slot):
 # Streamlit UI
 # ----------------------
 st.title("🌤 Weather Predictor")
-st.write("Three modes: dataset samples, manual input, live API forecast.")
+st.write("Two modes: manual input, live API forecast.")
 
 mode = st.radio("Select mode:", ["Mode 1: Manual", "Mode 2: Live API"])
 
 
 # ---------- Mode 1: manual input ----------
-elif mode == "Mode 1: Manual":
+if mode == "Mode 1: Manual":
     st.subheader("Mode 1 — Manual Input")
     col1, col2 = st.columns(2)
     with col1:
