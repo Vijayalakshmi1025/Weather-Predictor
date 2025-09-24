@@ -138,12 +138,12 @@ def build_features_from_slot(slot):
 st.title("🌤 Weather Predictor")
 st.write("Three modes: dataset samples, manual input, live API forecast.")
 
-mode = st.radio("Select mode:", ["Mode 1: Dataset", "Mode 2: Manual", "Mode 3: Live API"])
+mode = st.radio("Select mode:", ["Mode 1: Manual", "Mode 2: Live API"])
 
 
 # ---------- Mode 1: manual input ----------
-elif mode == "Mode 2: Manual":
-    st.subheader("Mode 2 — Manual Input")
+elif mode == "Mode 1: Manual":
+    st.subheader("Mode 1 — Manual Input")
     col1, col2 = st.columns(2)
     with col1:
         feelslike = st.number_input("Feels Like Temp (°C)", value=25.0, format="%.1f")
@@ -172,7 +172,7 @@ elif mode == "Mode 2: Manual":
 
 # ---------- Mode 2: Live API ----------
 else:
-    st.subheader("Mode 3 — Live API Prediction")
+    st.subheader("Mode 2 — Live API Prediction")
     city = st.text_input("City name:", value="Chennai")
     day_choice = st.selectbox("Predict for:", ["today (next slot)", "tomorrow (~24h)"])
     offset = 0 if day_choice.startswith("today") else 24
