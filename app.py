@@ -140,25 +140,8 @@ st.write("Three modes: dataset samples, manual input, live API forecast.")
 
 mode = st.radio("Select mode:", ["Mode 1: Dataset", "Mode 2: Manual", "Mode 3: Live API"])
 
-# ---------- Mode 1: dataset samples ----------
-if mode == "Mode 1: Dataset":
-    st.subheader("Mode 1 — Dataset Test Predictions")
-    # sample_test.csv is optional; if you don't have it, show message
-    sample_path = os.path.join(MODEL_DIR, "sample_test.csv")
-    if not os.path.exists(sample_path):
-        st.info("No sample_test.csv found in models/. If you'd like Mode 1, save a sample CSV named models/sample_test.csv with columns including 'target'.")
-    else:
-        sample_df = pd.read_csv(sample_path)
-        idx = st.selectbox("Pick sample index:", sample_df.index.tolist())
-        row = sample_df.iloc[[idx]][X_cols]
-        pred_lr = lr_model.predict(row)[0]
-        pred_rf = rf_model.predict(row)[0]
-        pred_h = best_alpha * pred_lr + (1 - best_alpha) * pred_rf
-        st.write(f"LR: {pred_lr:.1f}°C    RF: {pred_rf:.1f}°C    Hybrid: {pred_h:.1f}°C")
-        if "target" in sample_df.columns:
-            st.success(f"Actual (target): {sample_df.loc[idx,'target']:.1f}°C")
 
-# ---------- Mode 2: manual input ----------
+# ---------- Mode 1: manual input ----------
 elif mode == "Mode 2: Manual":
     st.subheader("Mode 2 — Manual Input")
     col1, col2 = st.columns(2)
@@ -187,7 +170,7 @@ elif mode == "Mode 2: Manual":
         st.write(f"Sky Condition: {cat}")
         st.write(f"Recommendation: {outfit}")
 
-# ---------- Mode 3: Live API ----------
+# ---------- Mode 2: Live API ----------
 else:
     st.subheader("Mode 3 — Live API Prediction")
     city = st.text_input("City name:", value="Chennai")
